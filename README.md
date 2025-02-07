@@ -5,7 +5,7 @@ A simple authentication application built with Next.js. This demo app demonstrat
 # Demo
 
 You can view the live demo here:  
-[https://watarjoy.github.io/auth_app/](https://watarjoy.github.io/auth_app/)
+[https://watarjoy.github.io/auth-app/](https://watarjoy.github.io/auth-app/)
 
 # Requirements
 
