@@ -1,4 +1,4 @@
-name: Deploy Frontend and API
+name: Deploy Frontend
 
 permissions:
   contents: read
