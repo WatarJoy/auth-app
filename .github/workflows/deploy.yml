@@ -1,0 +1,41 @@
+name: Deploy Frontend and API
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  push:
+    branches: ['master']
+  workflow_dispatch:
+
+jobs:
+  build_frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set working directory to frontend
+        working-directory: ./
+        run: echo "Building frontend..."
+      - name: Install frontend dependencies
+        working-directory: ./
+        run: npm ci
+      - name: Build and export Next.js site
+        working-directory: ./
+        run: npm run build && npm run export
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy_frontend:
+    needs: build_frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          branch: gh-pages
+          folder: ./out
